@@ -16,10 +16,6 @@ lambdalabConfig = {
 
 bundleUrl = '/assets/insightio/content.bundle.js';
 
-if (window.location.search.indexOf("pluginDev") === 1) {
-  bundleUrl = "https://localhost:9091/assets/content.bundle.js"
-}
-
 var xhr = new XMLHttpRequest();
 xhr.open("GET", bundleUrl, true);
 xhr.onreadystatechange = function(e) {
