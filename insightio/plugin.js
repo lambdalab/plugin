@@ -16,6 +16,7 @@ lambdalabConfig = {
 
 bundleUrl = '/assets/insightio/content.bundle.js';
 
+var res = "";
 var xhr = new XMLHttpRequest();
 xhr.open("GET", bundleUrl, true);
 xhr.onreadystatechange = function(e) {
@@ -25,3 +26,13 @@ xhr.onreadystatechange = function(e) {
   }
 };
 xhr.send(null);
+
+window.addEventListener('popstate', event => {
+  var appEle = document.querySelector("#insightio-plugin");
+  if (!appEle) {
+    console.log("Cannot find Insight.io app mounted. Force reload");
+    eval(res);
+  } else {
+    console.log("Find Insight.io app mounted. Do nothing here.");
+  }
+});
