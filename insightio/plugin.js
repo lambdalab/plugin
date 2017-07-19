@@ -16,23 +16,24 @@ lambdalabConfig = {
 
 bundleUrl = '/assets/insightio/content.bundle.js';
 
-var res = "";
-var xhr = new XMLHttpRequest();
-xhr.open("GET", bundleUrl, true);
-xhr.onreadystatechange = function(e) {
-  if (xhr.readyState === 4 && xhr.status === 200) {
-    var res = xhr.responseText;
-    eval(res);
-  }
+var loadBundle = function() {
+  var res = "";
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", bundleUrl, true);
+  xhr.onreadystatechange = function(e) {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var res = xhr.responseText;
+      eval(res);
+    }
+  };
+  xhr.send(null);
 };
-xhr.send(null);
+loadBundle();
 
-window.addEventListener('popstate', event => {
-  var appEle = document.querySelector("#insightio-plugin");
-  if (!appEle) {
-    console.log("Cannot find Insight.io app mounted. Force reload");
-    eval(res);
-  } else {
-    console.log("Find Insight.io app mounted. Do nothing here.");
-  }
-});
+window.onpopstate = function(event) {
+  window.location.reload();
+};
+
+history.onpushstate = function(event) {
+  window.location.reload();
+};
