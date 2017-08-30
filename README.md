@@ -1,6 +1,6 @@
 # Insight.io GitLab Plugin
 
-*Notice*: This repository is deprecated.
+**Notice**: *This repository is deprecated.*
 
 Follow the instructions below to get the latest release:
 
